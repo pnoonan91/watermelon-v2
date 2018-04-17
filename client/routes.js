@@ -3,9 +3,10 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Welcome} from './components'
-import {JoinGame} from './containers'
+import {JoinGame, Teams} from './containers'
 import {me} from './store'
 import {Modal, Button, Icon} from 'semantic-ui-react'
+import history from './history'
 
 import {resetUserGame} from './store/game'
 import {resetPlayer} from './store/player'
@@ -21,6 +22,7 @@ class Routes extends Component {
     }
     this.showGameChoice = this.showGameChoice.bind(this)
     this.modalResetGame = this.modalResetGame.bind(this)
+    this.modalJoinGame = this.modalJoinGame.bind(this)
   }
 
   componentDidMount () {
@@ -43,6 +45,11 @@ class Routes extends Component {
     this.showGameChoice()
   }
 
+  modalJoinGame() {
+    this.showGameChoice()
+    history.push('/teams')
+  }
+
   render () {
     const {isLoggedIn} = this.props
 
@@ -57,12 +64,13 @@ class Routes extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button icon labelPosition="left" color="olive"><Icon name="check" /> Yes</Button>
+            <Button icon labelPosition="left" color="olive" onClick={() => this.modalJoinGame()}><Icon name="check"/> Yes</Button>
             <Button icon labelPosition="left" color="pink" onClick={() => this.modalResetGame()}><Icon name="delete" /> No</Button>
           </Modal.Actions>
         </Modal>
         <Switch>
           <Route path="/join" component={JoinGame} />
+          <Route path="/teams" component={Teams} />
           <Route component={Welcome} />
         </Switch>
       </div>

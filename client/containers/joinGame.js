@@ -7,9 +7,11 @@ import {JoinGameHeader, JoinGameInput} from '../components/join'
 import {resetGame} from '../store/game'
 import {resetPlayer} from '../store/player'
 import history from '../history'
+import firebase from '../firebase'
 
 const mapStateToProps = state => ({
     ...state.game,
+    playerName: state.player.name,
     plaerNameLength: state.player.name.length,
     playerGameLength: state.player.game.length
 })
@@ -26,10 +28,11 @@ function mapDispatchToProps(dispatch) {
 class JoinGame extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             joinDisabled: true
         }
+
+        this.joinGame = this.joinGame.bind(this)
     }
 
     componentWillReceiveProps() {
@@ -42,6 +45,12 @@ class JoinGame extends Component {
         }
     }
 
+    joinGame() {
+        const {gameNumber, playerName} = this.props
+        firebase.database().ref(`/games/${gameNumber}/players`).push({name: playerName, status: 'waiting'})
+        history.push('/teams')
+    }
+
     render() {
         const {host, gameNumber, reset} = this.props
 
@@ -52,7 +61,7 @@ class JoinGame extends Component {
                 <Divider hidden />
                 <JoinGameInput host={host} gameNumber={gameNumber} />
                 <Divider hidden />
-                <Button color="olive" fluid size="massive" disabled={this.state.joinDisabled}>Join Game!</Button>
+                <Button color="olive" fluid size="massive" disabled={this.state.joinDisabled} onClick={() => this.joinGame()}>Join Game!</Button>
                 <Divider hidden />
                 {
                     host

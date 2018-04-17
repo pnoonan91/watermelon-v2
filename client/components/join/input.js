@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Message, Input, Divider} from 'semantic-ui-react'
 
-import {setCurrentName} from '../../store/player'
+import {setCurrentName, setCurrentGame as setPlayerGame} from '../../store/player'
 import {setCurrentGame} from '../../store/game'
 
 const mapStateToProps = state => ({
@@ -12,7 +12,10 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
     return {
         setName: (name) => dispatch(setCurrentName(name)),
-        setGame: (game) => dispatch(setCurrentGame(game))
+        setGameNumber(game){
+            dispatch(setCurrentGame(game))
+            dispatch(setPlayerGame(game))
+        }
     }
 }
 
@@ -28,7 +31,7 @@ class JoinGameInput extends Component {
                             </Message.Header>
                             <p>Share this with your friends so they can join your game!</p>
                         </Message>
-                        : <Input focus={false} fluid size="massive" placeholder="Enter Game Number" onChange={e => this.props.setGame(e.target.value.toUpperCase())} className="gameNumberInput"/>
+                        : <Input focus={false} fluid size="massive" placeholder="Enter Game Number" onChange={e => this.props.setGameNumber(e.target.value.toUpperCase())} className="gameNumberInput"/>
                 }
                 <Divider hidden />
                 <Input focus={false} fluid size="massive" placeholder="Enter Your Name" onChange={e => this.props.setName(e.target.value)}/>

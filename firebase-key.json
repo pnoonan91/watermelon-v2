@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "watermelon-v2",
+    "private_key_id": "5ec719c0363f04eefa3ab39b3107efe1c51d4043",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCdQgkFEE9h4SEV\ng9otyR3feAt07ExezJsTyz2vxUj7HOnmZ0/6HUafSsEzmlmX8olpQVr3QcIzdL3N\nwwWT/MYywMpJ7gPgpkKCvVCSsChlFxTG6XmlIxgTTbwgHmeJvek6H9qjNDV5cf4i\nU3x7tXHEGAqvyxPJTiDid/hNTZS2S33dQJJ1F/4svHwoHg/aCgv4cPrhs4NyZY3e\niwX+81xLxP8HfC4/4Zf0PG8XgXO+bSnSzyfH75vZ3NvXBDRYOOyvfVPM0oU0d17T\nuHljwQwmX4/pDw+JMEaSVyFwkkwhOzNE/qdHHbZzovvR9AEIZ5SO3WFP7i6PT0nf\ntbrzzwc9AgMBAAECggEAB8zeeyqRsXJ0DGfnotVCvtKqyNAuwpYGDC+M3gLcaZ5H\nyNavjCG3HtAbsLZTgtq0L60e+LxBiIFeJ85oYKyNXTecYRnmBdbhXjBLRpdnzYnd\nTTeIAeWxfEWjEvnHG3k40BoD44wDqgQ6PZQkDNPVcotZvloFn3rZXTpjrdvvCDK2\n+vhTHlth8xg7iBhjgImv1zETi7NL4YNpfIqVApviiS0wB8opovOPynMRKpaxH3o/\nSGlk5HigtL6i1qINKHkgKS9Xf2bxWfiRt8Zz8kuDLHovo1/KRc/XZUBS2oWDrgSH\nVC+Uj+7dBUwpATbMbhyrjRTHU06hwUZMAZATTq31OQKBgQDTkkb++cYVveMJ7d2G\nyE0zEkY1lDl4Me8v5jlZXGzDJFfX2MeePaiXzh0wA9vLiZ1DTxZh34D90vV39kjg\nAuUaCK2xPW6ZRI58bs9C9VnNuAn7q75wWb91ru/baNTYckxjZ5cXAX3MArH1ee8r\npwK67bsN+OCK3cZYFr7FSP1SFQKBgQC+R/VWFLoXVL+vRe7m/FeGHyFcZ3UThBYi\nH3PyWphOS9nQLxqC92YB5naIZsKj9cg4rcLKNeHV+E7Xwi9dqdMdBvdFk0YEAJx2\nFZhgfAfM0E/IIbfka01cldsRmB7uCk6a40xf+hGize6oe4MARHb4PmnRtYS+2ayY\nuobyTN4yiQKBgQC9v44u9aKDM1dhO1UXoaMjL7uKKBLWyqoDIo7Cp1LgPUMPUdvN\n/uyqoW+p9Xv18sj5af/f7Y0JmF8QpPC8/7ureqcUs8zyZvsHfHYkTlmpV+qULXbR\n2pwNFsUF2eIy8WezK1/lgS/qfWxPhXlMhC+9qKK/qDryMG7H6DZWR9zx9QKBgQC7\nDW/+7Cc3kkdRHPVKOpwrq+SWutlbkwhTCQppH2gD6Aq53eQ5BM1RZuX1FteWaKIo\nHaCUOb3FIvEWprz7XVu8eEGSMsGsY5Frf7UofCUK0Wjse0EUGeuV7XbKZ/lX1egJ\n2RIWc3Tsz3YiSDCyjZtKU8igr8lL+B30kcDg5nGzyQKBgQCxqIqQ8N/Nx+dRfWh2\n9BLTExiIGevs58cgO/yqwUf8tXlWAGIKf2IQdd7lOBD3Af4CgLYxZCeQlr3WsBIt\nO967g0x6NwvGz6yQSgnu3hwf4IWfjsAHQ6RuaR2VVVP3UskDzlyIts4hm9ee/imm\n3RAvfV32tTFJHuidJfxwtXMx4w==\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-9vkt4@watermelon-v2.iam.gserviceaccount.com",
+    "client_id": "106601387346566144146",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-9vkt4%40watermelon-v2.iam.gserviceaccount.com"
+  }

@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const {Game} = require('../db/models')
+const firebaseDb = require('../firebase')
+
 module.exports = router
 
 router.post('/:gameNumber', (req, res, next) => {
@@ -7,7 +9,10 @@ router.post('/:gameNumber', (req, res, next) => {
         code: req.params.gameNumber,
         active: true
     })
-    .then(game => res.json(game))
+    .then(game => {
+        firebaseDb.ref(`/games/${req.params.gameNumber}`).set({status: 'waiting'})
+        res.json(game)
+    })
     .catch(next)
 })
 
