@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Container, Button, Divider } from 'semantic-ui-react'
+import { Container, Button, Divider, Header } from 'semantic-ui-react'
 
 import {setGameNumber, setHost} from '../store/game'
+import {setCurrentGame} from '../store/player'
 import {gameNumberGenerator} from '../util'
 import history from '../history'
 
@@ -13,8 +14,10 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
     return {
         startGame() {
+            const gameNumber = gameNumberGenerator()
             dispatch(setHost())
-            dispatch(setGameNumber(gameNumberGenerator()))
+            dispatch(setGameNumber(gameNumber))
+            dispatch(setCurrentGame(gameNumber))
         }
     }
 }
@@ -24,7 +27,9 @@ class Welcome extends Component {
     const {startGame} = this.props
     return (
         <Container textAlign="center">
-            <h1>watermelon</h1>
+            <Divider hidden />
+            <Header color="pink" size="huge" textAlign="center">WATERMELON</Header>
+            <Divider hidden />
             <div>
                 <Button color="olive" fluid size="massive" onClick={() => startGame()}>
                 Start a Game
@@ -38,6 +43,7 @@ class Welcome extends Component {
                 Rules
                 </Button>
             </div>
+            <Divider hidden />
             <p>Built with &hearts; in Chicago by <a href="http://pat-noonan.com">Pat Noonan</a></p>
         </Container>
     )

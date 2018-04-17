@@ -5,6 +5,7 @@ import {Container, Button, Divider, Icon} from 'semantic-ui-react'
 
 import {JoinGameHeader, JoinGameInput} from '../components/join'
 import {resetGame} from '../store/game'
+import {resetPlayer} from '../store/player'
 import history from '../history'
 
 const mapStateToProps = state => ({
@@ -15,7 +16,10 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
     return {
-        reset: (gameNumber) => dispatch(resetGame(gameNumber))
+        reset(gameNumber){
+            dispatch(resetGame(gameNumber))
+            dispatch(resetPlayer())
+        }
     }
 }
 

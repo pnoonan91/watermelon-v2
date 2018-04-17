@@ -5,23 +5,67 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Welcome} from './components'
 import {JoinGame} from './containers'
 import {me} from './store'
+import {Modal, Button, Icon} from 'semantic-ui-react'
+
+import {resetUserGame} from './store/game'
+import {resetPlayer} from './store/player'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      gameChoiceOpen: false
+    }
+    this.showGameChoice = this.showGameChoice.bind(this)
+    this.modalResetGame = this.modalResetGame.bind(this)
+  }
+
   componentDidMount () {
-    this.props.loadInitialData()
+    const {gamePlay, gameTime, gameNumber, resetGameData} = this.props
+
+    if(gamePlay) {
+      let timeSinceGameStart = (Date.now() - new Date(gameTime))/60000
+      timeSinceGameStart > 45
+        ? resetGameData()
+        : this.showGameChoice()
+    }
+  }
+
+  showGameChoice() {
+    this.setState({gameChoiceOpen: !this.state.gameChoiceOpen})
+  }
+
+  modalResetGame() {
+    this.props.resetGameData()
+    this.showGameChoice()
   }
 
   render () {
     const {isLoggedIn} = this.props
 
     return (
-      <Switch>
-        <Route path="/join" component={JoinGame} />
-        <Route component={Welcome} />
-      </Switch>
+      <div>
+        <Modal dimmer="inverted" open={this.state.gameChoiceOpen} onClose={this.showGameChoice} closeOnDimmerClick={false}>
+          <Modal.Header color="pink">Game In Progress</Modal.Header>
+          <Modal.Content>
+            <Modal.Description>
+              <p>It looks like you're already a part of a game in progress.</p>
+              <p>Would you like to re-join this game?</p>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button icon labelPosition="left" color="olive"><Icon name="check" /> Yes</Button>
+            <Button icon labelPosition="left" color="pink" onClick={() => this.modalResetGame()}><Icon name="delete" /> No</Button>
+          </Modal.Actions>
+        </Modal>
+        <Switch>
+          <Route path="/join" component={JoinGame} />
+          <Route component={Welcome} />
+        </Switch>
+      </div>
     )
   }
 }
@@ -31,16 +75,17 @@ class Routes extends Component {
  */
 const mapState = (state) => {
   return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    gamePlay: state.game.gamePlay,
+    gameNumber: state.game.gameNumber,
+    gameTime: state.game.gameTime
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
-      dispatch(me())
+    resetGameData(){
+      dispatch(resetUserGame())
+      dispatch(resetPlayer())
     }
   }
 }
@@ -53,6 +98,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  * PROP TYPES
  */
 Routes.propTypes = {
-  loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+
 }

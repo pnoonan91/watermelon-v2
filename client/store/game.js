@@ -4,6 +4,7 @@ import history from '../history'
 //ACTION TYPES
 const GET_CURRENT_GAME = 'GET_CURRENT_GAME'
 const SET_CURRENT_GAME = 'SET_CURRENT_GAME'
+const SET_CURRENT_TIME = 'SET_CURRENT_TIME'
 const RESET_GAME = 'RESET_GAME'
 const SET_HOST = 'SET_HOST'
 
@@ -11,14 +12,16 @@ const SET_HOST = 'SET_HOST'
 const defaultGame = {
     gamePlay: false,
     host: false,
-    gameNumber: ''
+    gameNumber: '',
+    gameTime: ''
 }
 
 //ACTION CREATORS
 const getCurrentGame = () => ({type: GET_CURRENT_GAME})
 export const setCurrentGame = (game) => ({type: SET_CURRENT_GAME, game})
+const setCurrentTime = (time) => ({type: SET_CURRENT_TIME, time})
 export const setHost = () => ({type: SET_HOST})
-const resetUserGame = () => ({type: RESET_GAME})
+export const resetUserGame = () => ({type: RESET_GAME})
 
 //THUNK CREATORS
 export const setGameNumber = (gameNumber) =>
@@ -26,6 +29,7 @@ export const setGameNumber = (gameNumber) =>
         axios.post(`api/game/${gameNumber}`)
             .then(res => {
                 dispatch(setCurrentGame(res.data.code))
+                dispatch(setCurrentTime(res.data.createdAt))
                 history.push(`/join`)
             })
             .catch(err => console.error(err))
@@ -48,6 +52,11 @@ export default function(state = defaultGame, action) {
                 ...state,
                 gamePlay: true,
                 gameNumber: action.game
+            }
+        case SET_CURRENT_TIME:
+            return {
+                ...state,
+                gameTime: action.time
             }
         case SET_HOST:
             return {

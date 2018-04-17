@@ -28,7 +28,7 @@ class JoinGameInput extends Component {
                             </Message.Header>
                             <p>Share this with your friends so they can join your game!</p>
                         </Message>
-                        : <Input focus={false} fluid size="massive" placeholder="Enter Game Number" onChange={e => this.props.setGame(e.target.value)}/>
+                        : <Input focus={false} fluid size="massive" placeholder="Enter Game Number" onChange={e => this.props.setGame(e.target.value.toUpperCase())} className="gameNumberInput"/>
                 }
                 <Divider hidden />
                 <Input focus={false} fluid size="massive" placeholder="Enter Your Name" onChange={e => this.props.setName(e.target.value)}/>

@@ -15,6 +15,7 @@ const defaultPlayer = {
 //ACTION CREATORS
 export const setCurrentName = (name) => ({type: SET_PLAYER_NAME, name})
 export const setCurrentGame = (game) => ({type: SET_PLAYER_GAME, game})
+export const resetPlayer = () => ({type: RESET_PLAYER})
 
 //THUNK CREATORS
 
